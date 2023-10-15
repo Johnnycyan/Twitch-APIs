@@ -3,16 +3,16 @@ env:
   PROGRAM_NAME: thegame
 
 # thegame workflow
-name: Build ${{ env.PROGRAM_NAME }}
+name: Build thegame
 
 on:
   push:
     paths:
-      - '${{ env.PROGRAM_NAME }}/src/**'
+      - 'thegame/src/**'
       
   pull_request:
     paths:
-      - '${{ env.PROGRAM_NAME }}/src/**'
+      - 'thegame/src/**'
 
 jobs:
 
@@ -39,9 +39,9 @@ jobs:
     - name: Build
       run: |
         if [[ "${{ matrix.platform }}" == "windows" ]]; then
-          go build -v -o ${{ env.PROGRAM_NAME }}.exe ./${{ env.PROGRAM_NAME }}
+          go build -v -o thegame.exe ./thegame
         else
-          go build -v -o ${{ env.PROGRAM_NAME }} ./${{ env.PROGRAM_NAME }}
+          go build -v -o thegame ./thegame
         fi
 
     - uses: actions/upload-artifact@v2
