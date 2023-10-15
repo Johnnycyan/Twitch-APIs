@@ -1,28 +1,29 @@
-# Variables
-env:
-  PROGRAM_NAME: thegame
-
-# thegame workflow
-name: Build thegame
+name: Build TheGame
 
 on:
   push:
     paths:
-      - 'thegame/src/**'
-      
+    - 'thegame/src/**'
+
   pull_request:
-    paths:
-      - 'thegame/src/**'
+    paths: 
+    - 'thegame/src/**'
+
+  workflow_dispatch:
+    inputs:
+      buildPlatform:
+        description: 'Platform to build for (windows, linux)'
+        required: true
+        type: choice
+        options:
+        - windows
+        - linux
 
 jobs:
 
   build:
 
     runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        platform: [windows, linux]
 
     steps:
     
@@ -37,14 +38,16 @@ jobs:
       run: go get -v -t -d ./...
 
     - name: Build
+      if: ${{ github.event_name == 'workflow_dispatch' }}
       run: |
-        if [[ "${{ matrix.platform }}" == "windows" ]]; then
+        if [[ "${{ github.event.inputs.buildPlatform }}" == "windows" ]]; then
           go build -v -o thegame.exe ./thegame
         else
           go build -v -o thegame ./thegame
         fi
 
     - uses: actions/upload-artifact@v2
+      if: ${{ github.event_name == 'workflow_dispatch' }}
       with:
-        name: ${{ env.PROGRAM_NAME }}-${{ matrix.platform }}
-        path: ${{ env.PROGRAM_NAME }}*
+        name: thegame-${{ github.event.inputs.buildPlatform }}
+        path: thegame*
