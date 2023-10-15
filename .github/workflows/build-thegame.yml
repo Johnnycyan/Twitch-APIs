@@ -10,20 +10,16 @@ on:
     - 'thegame/src/**'
 
   workflow_dispatch:
-    inputs:
-      buildPlatform:
-        description: 'Platform to build for (windows, linux)'
-        required: true
-        type: choice
-        options:
-        - windows
-        - linux
 
 jobs:
 
   build:
 
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        platform: [windows, linux]
 
     steps:
     
@@ -49,8 +45,7 @@ jobs:
           go build -v -o ../thegame .
         fi
 
-    - uses: actions/upload-artifact@v2
-      if: ${{ github.event_name == 'workflow_dispatch' }}
+    - uses: actions/upload-artifact@v3
       with:
-        name: thegame-${{ github.event.inputs.buildPlatform }}
+        name: thegame
         path: thegame*
