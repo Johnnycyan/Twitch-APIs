@@ -12,39 +12,31 @@ on:
   workflow_dispatch:
 
 jobs:
-
   build:
 
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         platform: [windows, linux]
-
     steps:
-    
     - uses: actions/checkout@v4
-
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
         go-version: 1.21.x
-
     - name: Install dependencies
       run: |
         cd ./thegame/src
-        go get -v -t -d ./...
-
+        go get .
     - name: Build
       if: ${{ github.event_name == 'workflow_dispatch' }}
       run: |
         cd ./thegame/src
-        if [[ "${{ github.event.inputs.buildPlatform }}" == "windows" ]]; then
+        if [[ "${{ matrix.platform }}" == "windows" ]]; then
           go build -v -o ../thegame.exe .
         else
           go build -v -o ../thegame .
         fi
-
     - uses: actions/upload-artifact@v3
       with:
         name: thegame
