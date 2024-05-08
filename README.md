@@ -5,11 +5,15 @@ Feel free to host them yourself!
 
 [AI TTS Server](https://github.com/Johnnycyan/AI-TTS-Server) - A server that can accept requests for tts, send them to elevenlabs to get the audio, and send that audio to a connected client. Also has a connection for Pally
 
+[Go Deepdip API](https://github.com/Johnnycyan/go-deepdip-api) - Callable API for TM Deep Dip Leaderboards and PB
+
 [Go Formatter API](https://github.com/Johnnycyan/go-formatter-api) - Callable API to format a number with commas.
 
 [Go Ordinal API](https://github.com/Johnnycyan/go-ordinal-api) - A callable API to get the ordinal of a number and optionally also format it with commas
 
 [Go The Game API](https://github.com/Johnnycyan/go-thegame-api) - A callable API for Twitch bots to play THE GAME. Has a chance of winning.
+
+[Go TMIO SDK](https://github.com/Johnnycyan/go-tmio-sdk) - Unofficial TMIO SDK for Go. Currently only a few functions.
 
 [Go Twitch Live Checker](https://github.com/Johnnycyan/go-twitch-live-checker) - A callable API to check whether or not a Twitch stream is currently live.
 
