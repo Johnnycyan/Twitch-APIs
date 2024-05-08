@@ -3,7 +3,7 @@ Various APIs and Utilities that I've created for use with Twitch bots
 
 Feel free to host them yourself!
 
-[AI TTS Server](https://github.com/Johnnycyan/AI-TTS-Server) - A server that can accept requests for tts, send them to elevenlabs to get the audio, and send that audio to a connected client. Also has a connection for Pally
+[AI Twitch TTS](https://github.com/Johnnycyan/AI-Twitch-TTS) - A server that can accept requests for tts, send them to elevenlabs to get the audio, and send that audio to a connected client. Also has a connection for Pally
 
 [Go Deepdip API](https://github.com/Johnnycyan/go-deepdip-api) - Callable API for TM Deep Dip Leaderboards and PB
 
